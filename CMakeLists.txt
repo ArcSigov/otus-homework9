@@ -7,7 +7,7 @@ endif($ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+include(conandir/conanbuildinfo.cmake)
 conan_basic_setup()
 
 add_executable(${PROJECT_NAME} ip.cpp)
