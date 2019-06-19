@@ -1,0 +1,8 @@
+conan install . -s compiler=clang -s compiler.version=6.0 -s compiler.libcxx=libstdc++11 --build=missing --install-folder build
+
+instruction
+1.install pip
+2.install conan
+conanfile.txt
+insert cmake
+run:)
