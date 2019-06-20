@@ -5,7 +5,6 @@
 
 #include <range/v3/all.hpp>
 
-
 using ip_pool_strings  = std::vector<std::vector<std::string>>;
 using ip_data = std::vector<int>;
 using ip_pool_data = std::vector<ip_data>;
