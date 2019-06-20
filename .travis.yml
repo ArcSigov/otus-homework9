@@ -10,7 +10,7 @@ before_script:
 - sudo apt-get install python-pip -y
 - sudo pip install --user conan
 script:
-- conan install . -s compiler=clang -s compiler.version=6.0 -s compiler.libcxx=libstdc++11 --build=missing
+- conan install .
 - cmake .
 - cmake --build .
 - cmake --build . --target package
