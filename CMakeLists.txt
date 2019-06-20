@@ -5,7 +5,7 @@ else($ENV{TRAVIS_BUILD_NUMBER})
     project(range VERSION 0.0.1)
 endif($ENV{TRAVIS_BUILD_NUMBER})
 
-include(conandir/conanbuildinfo.cmake)
+include(conanbuildinfo.cmake)
 conan_basic_setup()
 
 add_executable(${PROJECT_NAME} range.cpp)
