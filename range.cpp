@@ -35,26 +35,45 @@ auto print = [](ip_data& cur)
     std::cout << std::endl;
 };
 
+
+auto split(const std::string &str, char d)
+{
+    std::vector<std::string> r;
+
+    auto str_start = ranges::begin(str);
+    auto stop = ranges::find(str,d);
+    while(stop != ranges::end(str))
+    {
+        r.emplace_back(str_start, stop);
+
+        str_start = ranges::next(stop);
+        stop =  ranges::find(str_start,ranges::end(str), d);
+    }
+    r.emplace_back(str_start,ranges::end(str));
+    return r;
+}
+
 int main()
 {
     try
     {
         for(std::string line; std::getline(std::cin, line);)
         {
-            auto splitted  = ranges::action::split(line, ranges::view::c_str("\t"));
-            ip_pool.push_back(ranges::action::split(splitted[0], ranges::view::c_str(".")));
+             auto v = split(line, '\t');
+             ip_pool.emplace_back(split(v.at(0), '.'));
         }
 
-        for (auto it = ip_pool.begin(); it != ip_pool.end();it++)
+        for (auto it:ip_pool)
         {
-            for (auto it1 = it->begin(); it1 != it->end();it1++)
+            auto start = ranges::begin(it);
+            while (start != ranges::end(it))
             {
-                ip.push_back(std::stoi(*it1));
+                ip.emplace_back(std::stoi(*start));
+                start++;
             }
-            ip_data_pool.push_back(ip);
+            ip_data_pool.emplace_back(ip);
             ip.clear();
         }
-        
         ranges::sort(ip_data_pool,std::greater<>());
         ranges::for_each(ip_data_pool,print);
         ranges::for_each(ip_data_pool| ranges::view::filter(filter),print);
