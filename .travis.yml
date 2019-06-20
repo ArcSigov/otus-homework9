@@ -11,8 +11,7 @@ before_script:
 - sudo rm -rf /usr/local/bin/pip3
 - sudo rm -rf /usr/local/bin/pip3.*
 - sudo apt-get install python-pip -y
-install:
-- sudo pip install --user conan
+- pip install --user conan
 - conan install conanfile.txt
 script:
 - cmake .
