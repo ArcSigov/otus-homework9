@@ -10,7 +10,6 @@ before_script:
 - sudo apt-get install python-pip -y
 install:
 - sudo pip install --user conan
-- conan user
 - conan install conanfile.txt
 script:
 - cmake .
