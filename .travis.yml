@@ -8,9 +8,11 @@ before_script:
 - sudo apt-get install gcc-7 -y
 - sudo apt-get install g++-7 -y
 - sudo apt-get install python-pip -y
+install:
 - sudo pip install --user conan
-script:
+- conan user
 - conan install .
+script:
 - cmake .
 - cmake --build .
 - cmake --build . --target package
