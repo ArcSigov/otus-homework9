@@ -7,6 +7,9 @@ before_script:
 - sudo apt-get update -q
 - sudo apt-get install gcc-7 -y
 - sudo apt-get install g++-7 -y
+- sudo apt-get purge python-pip python3-pip -y
+- sudo rm -rf /usr/local/bin/pip3
+- sudo rm -rf /usr/local/bin/pip3.*
 - sudo apt-get install python-pip -y
 install:
 - sudo pip install --user conan
