@@ -2,12 +2,43 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "filters.h"
 
 #include <range/v3/all.hpp>
 
 using ip_pool_strings  = std::vector<std::vector<std::string>>;
+using ip_data = std::vector<int>;
+using ip_pool_data = std::vector<ip_data>;
+
+ip_data         ip;
+ip_pool_data    ip_data_pool;
 ip_pool_strings ip_pool;
+
+auto filter1 = [](ip_data& cur)
+{
+    return (cur[0] == 1);
+};
+
+auto filter4670 = [](ip_data& cur)
+{
+    return (cur[0] == 46 && cur[1] == 70);
+};
+
+auto filter_any = [](ip_data& cur)
+{
+    return ranges::any_of(cur,[](int& i){return i == 46;});
+};
+
+auto print = [](ip_data& cur)
+{
+    for (auto it = cur.begin(); it != cur.end() ; it++)
+    {
+        if (it !=cur.begin())
+            std::cout << ".";
+        std::cout << *it;
+    }
+    std::cout << std::endl;
+};
+
 
 auto split(const std::string &str, char d)
 {
@@ -26,33 +57,14 @@ auto split(const std::string &str, char d)
     return r;
 }
 
-void ip_log(){};
-template<typename T, typename ... Args>
-void ip_log(T t, Args ... args)
-{
-    ip_pool_data printable = t;
-    ranges::for_each(printable,[](ip_data& cur)
-    {
-        for (auto it = ranges::begin(cur); it != ranges::end(cur) ; it++)
-        {
-            if (it !=ranges::begin(cur))
-                std::cout << ".";
-            std::cout << *it;
-        }
-        std::cout << std::endl;
-    });
-    ip_log(args...);
-}
-
 int main()
 {
     try
     {
-        ip_pool_strings ip_pool;
         for(std::string line; std::getline(std::cin, line);)
         {
-            auto v = split(line, '\t');
-            ip_pool.push_back(split(v.at(0), '.'));
+             auto v = split(line, '\t');
+             ip_pool.emplace_back(split(v.at(0), '.'));
         }
 
         for (auto it:ip_pool)
@@ -67,8 +79,10 @@ int main()
             ip.clear();
         }
         ranges::sort(ip_data_pool,std::greater<>());
-        ip_log(ip_data_pool,filter(1),filter(46,70),filter_any(46));
-      
+        ranges::for_each(ip_data_pool,print);
+        ranges::for_each(ip_data_pool| ranges::view::filter(filter1),print);
+        ranges::for_each(ip_data_pool| ranges::view::filter(filter4670),print);
+        ranges::for_each(ip_data_pool| ranges::view::filter(filter_any),print);
     }
     catch(const std::exception &e)
     {

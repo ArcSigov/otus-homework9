@@ -1,0 +1,10 @@
+{
+ "profile": "[settings]\narch=x86_64\narch_build=x86_64\nbuild_type=Release\ncompiler=clang\ncompiler.libcxx=libstdc++11\ncompiler.version=6.0\nos=Linux\nos_build=Linux\n[options]\n[build_requires]\n[env]\n", 
+ "root": {
+  "version": null, 
+  "name": null, 
+  "channel": null, 
+  "user": null
+ }, 
+ "options": []
+}
