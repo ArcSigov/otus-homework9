@@ -30,9 +30,9 @@ auto filter_any = [](ip_data& cur)
 
 auto print = [](ip_data& cur)
 {
-    for (auto it = cur.begin(); it != cur.end() ; it++)
+    for (auto it = ranges::begin(cur); it != ranges::end(cur) ; it++)
     {
-        if (it !=cur.begin())
+        if (it !=ranges::begin(cur))
             std::cout << ".";
         std::cout << *it;
     }
