@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/sigov/doc/otus-homework9/build",
-  "command": "/usr/bin/clang++-6.0   -I/home/sigov/.conan/data/range-v3/0.5.0/ericniebler/stable/package/c921ef56ff4a1f40be7a8da971b617c94160e59d/include     -g    -Wpedantic -Wall -Wextra -std=gnu++1z -o CMakeFiles/range.dir/range.cpp.o -c /home/sigov/doc/otus-homework9/range.cpp",
-  "file": "/home/sigov/doc/otus-homework9/range.cpp"
-}
-]
