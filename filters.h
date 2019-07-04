@@ -13,7 +13,7 @@ ip_pool_data ip_data_pool;
 
 
 template <typename ... Args> 
-decltype(auto) filter( Args ... args)
+auto filter( Args ... args)
  {
     if (sizeof ... (Args)> 4)
         throw std::bad_alloc();
